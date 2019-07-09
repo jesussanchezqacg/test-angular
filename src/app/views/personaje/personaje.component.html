@@ -1,0 +1,109 @@
+<h1 class="h1" [ngStyle]="{'text-align': 'center'}">
+    {{title}}
+</h1>
+<form class="form needs-validation" #formPeople="ngForm" (ngSubmit)="search()" novalidate>
+    <div class="form-row justify-content-md-center">
+        <div class="form-group col-sm-4">
+            <input type="text" class="form-control" name="name" #name="ngModel" [(ngModel)]="searchPeople.name" placeholder="Ingrese el nombre de su personaje favorito" required>
+            <div class="valid-feedback">El nombre es valido</div>
+            <div class="invalid-feedback">El nombre no invalido!!</div>
+        </div>
+        <div class="form-group col-sm-1">
+                <button type="submit" class="btn btn-info" [disabled]="!formPeople.form.valid">Buscar</button>
+        </div>
+        <div class="form-group col-sm-1">
+            <button type="reset" class="btn btn-secondary">Limpiar</button>
+        </div>
+    </div>
+</form>
+<br>
+<h4 class="h4">Información del Personaje:</h4>
+<br>
+<div *ngIf="people">
+    <div *ngIf="!people.name">
+        Lo sentimos, pero so se ha encontrado información.
+    </div>
+    <div *ngIf="people.name">
+        <div class="form-row justify-content-md-center">
+            <div class="form-group col-sm-6">
+                <table class="table table-hover table-bordered">
+                    <tbody>
+                        <tr>
+                            <td>Nombre:</td>
+                            <td>{{people.name}}</td>
+                        </tr>
+                        <tr>
+                            <td>Altura:</td>
+                            <td>{{people.height}}</td>
+                        </tr>
+                        <tr>
+                            <td>Masa:</td>
+                            <td>{{people.mass}}</td>
+                        </tr>
+                        <tr>
+                            <td>Color de Pelo:</td>
+                            <td>{{people.hair_color}}</td>
+                        </tr>
+                        <tr>
+                            <td>Color de Piel:</td>
+                            <td>{{people.skin_color}}</td>
+                        </tr>
+                        <tr>
+                            <td>Color de Ojos:</td>
+                            <td>{{people.eye_color}}</td>
+                        </tr>
+                        <tr>
+                            <td>Año de Nacimiento:</td>
+                            <td>{{people.birth_year}}</td>
+                        </tr>
+                        <tr>
+                            <td>Género:</td>
+                            <td>{{people.gender}}</td>
+                        </tr>
+                        <tr>
+                            <td>Planeta:</td>
+                            <td>{{people.homeworld.name}}</td>
+                        </tr>
+                        <tr>
+                            <td>Películas:</td>
+                            <td>
+                                <ul *ngFor="let $data of people.films">
+                                    <li>{{$data.title}}</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Especies:</td>
+                            <td>
+                                <ul *ngFor="let $data of people.species">
+                                    <li>{{$data.name}}</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Vehículos:</td>
+                            <td>
+                                <ul *ngFor="let $data of people.vehicles">
+                                    <li>{{$data.name}}</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Naves Espaciales:</td>
+                            <td>
+                                <ul *ngFor="let $data of people.starships">
+                                    <li>{{$data.name}}</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="!people" [ngStyle]="{'text-align': 'center'}">
+    <div class="spinner-border" role="status">
+        <span class="sr-only">Buscando Información...</span>
+    </div>
+</div>
