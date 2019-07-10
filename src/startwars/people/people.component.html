@@ -1,0 +1,36 @@
+
+<div class="input-group mb-3">
+            <input
+            type="text"
+            class="form-control"
+            name="name"
+            [ngModel]="name"
+            placeholder="Buscar personaje"
+            aria-label="" aria-describedby="basic-addon1"
+            (keyup.enter)="getName($event)"
+            (focusout)="getName($event)" > 
+</div>
+
+<div class="card text-center m-3">
+    <h3 class="card-header">Personaje</h3>
+    <div class="card-body">
+      <table *ngIf="person != null" class="table table-striped table-bordered" style="width:100%">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Planeta</th>
+            <th>Peso</th>
+            <th>Altura</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{person.name}}</td>
+            <td>{{person.homeworld}}</td>
+            <td>{{person.mass}}</td>
+            <td>{{person.height}}</td>
+          <tr>
+        </tbody>
+        </table>
+      </div>
+  </div>
